@@ -210,7 +210,7 @@ CONTEUDO_EDUCACIONAL = {
                 "tipo": "lista_ordenada",
                 "itens": [
                     "**Entenda o expoente:** O expoente não é para multiplicar, mas sim para indicar quantas vezes a base é multiplicada por ela mesma.",
-                    "**Realize a multiplicação:** Exemplo: $5^3$ significa $5 \times 5 \times 5 = 125$."
+                    r"**Realize a multiplicação:** Exemplo: $5^3$ significa $5 \times 5 \times 5 = 125$."
                 ]
             },
             {
@@ -220,10 +220,10 @@ CONTEUDO_EDUCACIONAL = {
             {
                 "tipo": "lista_nao_ordenada",
                 "itens": [
-                    "**Expoente 1:** $7^1 = 7$.",
-                    "**Expoente 0:** $10^0 = 1$.",
-                    "**Base 10:** $10^4 = 10.000$.",
-                    "**Números negativos:** A base negativa com expoente par resulta em número positivo (ex: $(-2)^4 = 16$), e com expoente ímpar, em negativo (ex: $(-2)^3 = -8$)."
+                    r"**Expoente 1:** $7^1 = 7$.",
+                    r"**Expoente 0:** $10^0 = 1$.",
+                    r"**Base 10:** $10^4 = 10.000$.",
+                    r"**Números negativos:** A base negativa com expoente par resulta em número positivo (ex: $(-2)^4 = 16$), e com expoente ímpar, em negativo (ex: $(-2)^3 = -8$)."
                 ]
             },
             {
@@ -253,7 +253,7 @@ CONTEUDO_EDUCACIONAL = {
             },
             {
                 "tipo": "paragrafo",
-                "conteudo": "Ela é composta por **índice**, **radical** ($\sqrt{}$) e **radicando**."
+                "conteudo": r"Ela é composta por **índice**, **radical** ($\sqrt{}$) e **radicando**."
             },
             {
                 "tipo": "subtitulo",
@@ -263,8 +263,8 @@ CONTEUDO_EDUCACIONAL = {
                 "tipo": "lista_nao_ordenada",
                 "itens": [
                     "**Pense na potenciação:** A pergunta é 'Qual número, elevado ao índice, resulta no radicando?'",
-                    "**Exemplo:** $\sqrt{25}$. O índice é 2. A resposta é 5, pois $5^2 = 25$.",
-                    "**Exemplo:** $\sqrt[3]{8}$. O índice é 3. A resposta é 2, pois $2^3 = 8$."
+                    r"**Exemplo:** $\sqrt{25}$. O índice é 2. A resposta é 5, pois $5^2 = 25$.",
+                    r"**Exemplo:** $\sqrt[3]{8}$. O índice é 3. A resposta é 2, pois $2^3 = 8$."
                 ]
             },
             {
@@ -275,7 +275,7 @@ CONTEUDO_EDUCACIONAL = {
                 "tipo": "lista_nao_ordenada",
                 "itens": [
                     "**Raiz de números negativos:** Em geral, não existe raiz quadrada de números negativos no conjunto dos números reais.",
-                    "**Simplificação de radicais:** Você pode fatorar o radicando para simplificar a raiz. Exemplo: $\sqrt{12}$ é $2\sqrt{3}$."
+                    r"**Simplificação de radicais:** Você pode fatorar o radicando para simplificar a raiz. Exemplo: $\sqrt{12}$ é $2\sqrt{3}$."
                 ]
             },
             {
@@ -315,7 +315,7 @@ CONTEUDO_EDUCACIONAL = {
                 "tipo": "lista_nao_ordenada",
                 "itens": [
                     "**Transforme em potenciação:** Use a 'regra da voltinha': a base eleva o resultado do log para dar o logaritmando.",
-                    "**Exemplo:** $\log_2 8 = x$. Isso se traduz para a equação $2^x = 8$. A resposta é 3."
+                    r"**Exemplo:** $\log_2 8 = x$. Isso se traduz para a equação $2^x = 8$. A resposta é 3."
                 ]
             },
             {
@@ -325,8 +325,8 @@ CONTEUDO_EDUCACIONAL = {
             {
                 "tipo": "lista_nao_ordenada",
                 "itens": [
-                    "**Logaritmo da base:** $\log_5 5 = 1$.",
-                    "**Logaritmo de 1:** $\log_{10} 1 = 0$.",
+                    r"**Logaritmo da base:** $\log_5 5 = 1$.",
+                    r"**Logaritmo de 1:** $\log_{10} 1 = 0$.",
                     "**Logaritmo de 0 e negativos:** Não é definido no conjunto dos números reais."
                 ]
             },

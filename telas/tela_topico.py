@@ -1,110 +1,122 @@
 # telas/tela_topico.py
 
 import tkinter as tk
+from tkinter import font as tkFont
 from conteudo.dados import CONTEUDO_EDUCACIONAL
+
+# --- Paleta de Cores e Fontes ---
+CORES = {
+    "background": "#2c3e50",
+    "background_secundario": "#34495e",
+    "texto_primario": "#ecf0f1",
+    "texto_titulo": "#ffffff",
+    "acento_primario": "#3498db",
+    "acento_secundario": "#9b59b6",
+    "sucesso": "#2ecc71",
+    "sucesso_hover": "#27ae60",
+    "codigo_background": "#283747",
+    "borda": "#4a637d"
+}
+
+FONTES = {
+    "titulo": ("Arial", 40, "bold"),
+    "subtitulo": ("Arial", 24, "bold"),
+    "paragrafo": ("Arial", 18),
+    "paragrafo_bold": ("Arial", 18, "bold"),
+    "codigo": ("Courier", 16)
+}
+
+# --- Widget Customizado para Botões com Hover ---
+class HoverButton(tk.Button):
+    def __init__(self, master, hover_color, **kw):
+        super().__init__(master=master, **kw)
+        self.default_bg = self["background"]
+        self.hover_color = hover_color
+        self.bind("<Enter>", self.on_enter)
+        self.bind("<Leave>", self.on_leave)
+
+    def on_enter(self, e):
+        self['background'] = self.hover_color
+
+    def on_leave(self, e):
+        self['background'] = self.default_bg
 
 class TelaTopico(tk.Frame):
     def __init__(self, master, nome_topico_chave, voltar_callback, exercicios_callback):
-        super().__init__(master, bg="#274C5C")
+        super().__init__(master, bg=CORES["background"])
         
         info = CONTEUDO_EDUCACIONAL[nome_topico_chave]
-
-        # Callbacks
         self.voltar_callback = voltar_callback
         self.exercicios_callback = exercicios_callback
         self.nome_topico_chave = nome_topico_chave
         
-        # Fontes
-        self.FONTE_TITULO = ("Arial", 32, "bold")
-        self.FONTE_SUBTITULO = ("Arial", 20, "bold")
-        self.FONTE_PARAGRAFO = ("Arial", 16)
-        self.FONTE_PARAGRAFO_BOLD = ("Arial", 16, "bold")
-        self.FONTE_CODIGO = ("Courier", 16)
-
-        # Layout
         self.grid_rowconfigure(1, weight=1)
         self.grid_columnconfigure(0, weight=1)
 
-        # 1. TÍTULO
-        tk.Label(self, text=info["titulo"], font=self.FONTE_TITULO, bg="#274C5C", fg="white").grid(row=0, column=0, pady=(30, 15))
+        tk.Label(self, text=info["titulo"], font=FONTES["titulo"], bg=CORES["background"], fg=CORES["texto_titulo"]).grid(row=0, column=0, pady=(40, 25))
 
-        # 2. ÁREA DE CONTEÚDO
-        self.text_area = tk.Text(self, bg="#2C3E50", fg="white", padx=40, pady=20,
-                                 font=self.FONTE_PARAGRAFO, relief="flat", wrap="word",
-                                 highlightthickness=0, borderwidth=0)
-        self.text_area.grid(row=1, column=0, sticky="nsew", padx=100)
+        # Frame para a área de texto com borda
+        text_frame = tk.Frame(self, bg=CORES["background_secundario"], bd=2, relief="flat", highlightbackground=CORES["borda"], highlightthickness=1)
+        text_frame.grid(row=1, column=0, sticky="nsew", padx=100, pady=10)
+        text_frame.grid_rowconfigure(0, weight=1)
+        text_frame.grid_columnconfigure(0, weight=1)
+
+        self.text_area = tk.Text(text_frame, bg=CORES["background_secundario"], fg=CORES["texto_primario"], padx=50, pady=30,
+                                 font=FONTES["paragrafo"], relief="flat", wrap="word",
+                                 highlightthickness=0, borderwidth=0, insertbackground=CORES["texto_titulo"])
+        self.text_area.grid(row=0, column=0, sticky="nsew")
         
-        # Configurando as "tags" de estilo
-        self.text_area.tag_configure("bold", font=self.FONTE_PARAGRAFO_BOLD)
-        self.text_area.tag_configure("subtitulo", font=self.FONTE_SUBTITULO, foreground="#1ABC9C", justify="center")
-        self.text_area.tag_configure("codigo", font=self.FONTE_CODIGO, background="#34495E", foreground="#ECF0F1")
-        self.text_area.tag_configure("center", justify="center")
+        self.text_area.tag_configure("bold", font=FONTES["paragrafo_bold"])
+        self.text_area.tag_configure("subtitulo", font=FONTES["subtitulo"], foreground=CORES["acento_primario"], justify="center", spacing3=15)
+        self.text_area.tag_configure("codigo", font=FONTES["codigo"], background=CORES["codigo_background"], foreground=CORES["texto_primario"])
+        self.text_area.tag_configure("center", justify="center", spacing3=10)
         self.text_area.tag_configure("left", justify="left")
         
-        # Barra de rolagem
-        scrollbar = tk.Scrollbar(self, orient="vertical", command=self.text_area.yview)
-        scrollbar.grid(row=1, column=1, sticky="ns")
+        scrollbar = tk.Scrollbar(text_frame, orient="vertical", command=self.text_area.yview, bg=CORES["background"], troughcolor=CORES["background_secundario"], activebackground=CORES["acento_primario"])
+        scrollbar.grid(row=0, column=1, sticky="ns")
         self.text_area.config(yscrollcommand=scrollbar.set)
         
-        # Renderiza o conteúdo formatado
         self.renderizar_conteudo_formatado(info["teoria"])
-        
         self.text_area.config(state="disabled")
 
-        # 3. BOTÕES
-        frame_botoes = tk.Frame(self, bg="#274C5C")
-        frame_botoes.grid(row=2, column=0, pady=30)
+        frame_botoes = tk.Frame(self, bg=CORES["background"])
+        frame_botoes.grid(row=2, column=0, pady=40)
         
-        tk.Button(frame_botoes, text="Praticar com Exercícios", 
-                  command=lambda: self.exercicios_callback(self.nome_topico_chave),
-                  bg="#2ECC71", fg="white", font=("Arial", 14, "bold"), relief="groove", padx=15, pady=10
-                 ).pack(side="left", padx=20)
-        
-        tk.Button(frame_botoes, text="Voltar ao Menu", command=self.voltar_callback,
-                  bg="#3498DB", fg="white", font=("Arial", 14, "bold"), relief="groove", padx=15, pady=10
-                 ).pack(side="left", padx=20)
-
-    # --- NOVA FUNÇÃO AUXILIAR ---
-    def traduzir_simbolos(self, texto):
-        """
-        Substitui códigos LaTeX-like por caracteres Unicode corretos.
-        """
-        substituicoes = {
-            '$': '', # Remove os delimitadores de matemática
-            '\\times': '×', # Símbolo de multiplicação
-            '^2': '²',
-            '^3': '³',
-            '^4': '⁴',
-            '^1': '¹',
-            '^0': '⁰',
-            # Adicione outras substituições se necessário, como '{' e '}'
-            '{': '',
-            '}': '',
+        estilo_btn = {
+            "fg": CORES["texto_titulo"],
+            "activeforeground": CORES["texto_titulo"],
+            "font": ("Arial", 14, "bold"),
+            "relief": "flat", "bd": 0,
+            "padx": 25, "pady": 15
         }
+
+        HoverButton(frame_botoes, text="Praticar com Exercícios", 
+                    command=lambda: self.exercicios_callback(self.nome_topico_chave),
+                    bg=CORES["sucesso"], hover_color=CORES["sucesso_hover"], **estilo_btn).pack(side="left", padx=20)
+        
+        HoverButton(frame_botoes, text="Voltar ao Menu", command=self.voltar_callback,
+                    bg=CORES["acento_primario"], hover_color="#2980b9", **estilo_btn).pack(side="left", padx=20)
+
+    def traduzir_simbolos(self, texto):
+        substituicoes = {'$': '', '\\times': '×', '^2': '²', '^3': '³', '^4': '⁴', '^1': '¹', '^0': '⁰', '{': '', '}': ''}
         for codigo, simbolo in substituicoes.items():
             texto = texto.replace(codigo, simbolo)
         return texto
 
     def formatar_e_inserir_texto(self, texto, tags=None):
-        if tags is None:
-            tags = []
-            
+        tags = tuple(tags) if tags else ()
         partes = texto.split('**')
         for i, parte in enumerate(partes):
-            # --- MUDANÇA: Traduz os símbolos antes de inserir ---
             parte_traduzida = self.traduzir_simbolos(parte)
-
-            if i % 2 == 1: # Ímpar: texto que estava entre '**'
-                self.text_area.insert("end", parte_traduzida, ("bold",) + tuple(tags))
-            else: # Par: texto normal
-                self.text_area.insert("end", parte_traduzida, tuple(tags))
+            current_tags = ("bold",) + tags if i % 2 == 1 else tags
+            self.text_area.insert("end", parte_traduzida, current_tags)
 
     def renderizar_conteudo_formatado(self, teoria):
         for item in teoria:
             tipo = item.get("tipo", "")
             
             if tipo == "paragrafo":
-                self.formatar_e_inserir_texto(item.get("conteudo", ""), tags=["center"])
+                self.formatar_e_inserir_texto(item.get("conteudo", ""), tags=["center"]) # <<-- CORREÇÃO AQUI
                 self.text_area.insert("end", "\n\n")
 
             elif tipo == "subtitulo":
@@ -113,16 +125,17 @@ class TelaTopico(tk.Frame):
 
             elif tipo == "codigo":
                 conteudo_traduzido = self.traduzir_simbolos(item.get("conteudo", ""))
-                self.text_area.window_create("end", window=tk.Label(self.text_area, text=conteudo_traduzido,
-                                                                      font=self.FONTE_CODIGO, bg="#34495E", fg="#ECF0F1",
-                                                                      relief="sunken", bd=2, padx=10, pady=10))
+                code_frame = tk.Frame(self.text_area, bg=CORES["codigo_background"], padx=20, pady=20)
+                tk.Label(code_frame, text=conteudo_traduzido,
+                         font=FONTES["codigo"], bg=CORES["codigo_background"], fg=CORES["texto_primario"], justify="left").pack()
+                self.text_area.window_create("end", window=code_frame)
                 self.text_area.insert("end", "\n\n")
 
             elif tipo in ["lista_ordenada", "lista_nao_ordenada"]:
                 itens = item.get("itens", [])
                 for i, texto_item in enumerate(itens):
                     prefixo = f"  {i+1}. " if tipo == "lista_ordenada" else "  • "
-                    self.text_area.insert("end", prefixo, ("left",))
-                    self.formatar_e_inserir_texto(texto_item, tags=["left"])
+                    self.text_area.insert("end", prefixo, ("left", "bold"))
+                    self.formatar_e_inserir_texto(texto_item, tags=["left"]) # <<-- CORREÇÃO AQUI
                     self.text_area.insert("end", "\n")
                 self.text_area.insert("end", "\n")

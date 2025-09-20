@@ -1,87 +1,83 @@
 # telas/tela_topico.py
 
 import tkinter as tk
-# --- CORREÇÃO AQUI ---
-# Adicionamos o 'D' que faltava em CONTEUDO_EDUCACIONAL
 from conteudo.dados import CONTEUDO_EDUCACIONAL
 
 class TelaTopico(tk.Frame):
-    def __init__(self, master, nome_topico_chave, voltar_callback):
+    def __init__(self, master, nome_topico_chave, voltar_callback, exercicios_callback):
         super().__init__(master, bg="#274C5C")
         
         info = CONTEUDO_EDUCACIONAL[nome_topico_chave]
 
-        # --- DEFINIÇÃO DE FONTES PARA MELHOR HIERARQUIA ---
-        self.FONTE_TITULO = ("Arial", 28, "bold")
-        self.FONTE_SUBTITULO = ("Arial", 18, "bold")
-        self.FONTE_PARAGRAFO = ("Arial", 14)
-        self.FONTE_CODIGO = ("Courier", 14, "bold")
-
-        # --- LAYOUT PRINCIPAL (TÍTULO, CONTEÚDO, BOTÕES) ---
+        # --- Callbacks ---
+        self.voltar_callback = voltar_callback
+        self.exercicios_callback = exercicios_callback
+        self.nome_topico_chave = nome_topico_chave
+        
+        # Fontes...
+        self.FONTE_TITULO = ("Arial", 32, "bold")
+        self.FONTE_SUBTITULO = ("Arial", 20, "bold")
+        self.FONTE_PARAGRAFO = ("Arial", 16)
+        self.FONTE_CODIGO = ("Courier", 16)
+        
+        # Layout...
         self.grid_rowconfigure(1, weight=1)
         self.grid_columnconfigure(0, weight=1)
 
         # 1. TÍTULO
-        frame_titulo = tk.Frame(self, bg="#274C5C")
-        frame_titulo.grid(row=0, column=0, sticky="ew", padx=50, pady=(20,10))
-        
-        tk.Label(
-            frame_titulo, text=info["titulo"], font=self.FONTE_TITULO, 
-            bg="#274C5C", fg="white"
-        ).pack()
+        tk.Label(self, text=info["titulo"], font=self.FONTE_TITULO, bg="#274C5C", fg="white").grid(row=0, column=0, pady=(30, 15))
 
-        # --- ÁREA DE ROLAGEM PARA O CONTEÚDO ---
-        # 2. ÁREA DE CONTEÚDO COM SCROLL
+        # 2. ÁREA DE CONTEÚDO...
         canvas = tk.Canvas(self, bg="#274C5C", highlightthickness=0)
         scrollbar = tk.Scrollbar(self, orient="vertical", command=canvas.yview)
-        scrollable_frame = tk.Frame(canvas, bg="#274C5C")
-
-        scrollable_frame.bind(
-            "<Configure>",
-            lambda e: canvas.configure(scrollregion=canvas.bbox("all"))
-        )
-
-        canvas.create_window((0, 0), window=scrollable_frame, anchor="nw")
+        scrollable_frame = tk.Frame(canvas, bg="#2C3E50", padx=20, pady=20)
+        scrollable_frame.bind("<Configure>", lambda e: canvas.configure(scrollregion=canvas.bbox("all")))
+        canvas.bind("<Configure>", lambda e: canvas.itemconfig(canvas_window, width=e.width))
+        canvas_window = canvas.create_window((0, 0), window=scrollable_frame, anchor="n")
         canvas.configure(yscrollcommand=scrollbar.set)
-
-        canvas.grid(row=1, column=0, sticky="nsew", padx=(50, 30))
+        canvas.grid(row=1, column=0, sticky="nsew", padx=100)
         scrollbar.grid(row=1, column=1, sticky="ns")
         
-        # Renderiza o conteúdo DENTRO do frame rolável
         self.renderizar_conteudo(scrollable_frame, info["teoria"])
 
-        # 3. BOTÕES NA PARTE INFERIOR
+        # --- MUDANÇA PRINCIPAL AQUI ---
+        # 3. FRAME INFERIOR PARA OS BOTÕES
         frame_botoes = tk.Frame(self, bg="#274C5C")
-        frame_botoes.grid(row=2, column=0, sticky="ew", pady=20)
-        frame_botoes.grid_columnconfigure(0, weight=1)
-        frame_botoes.grid_columnconfigure(2, weight=1)
-
+        frame_botoes.grid(row=2, column=0, pady=30)
+        
         tk.Button(
-            frame_botoes, text="Voltar ao Menu", command=voltar_callback,
-            bg="#1ABC9C", fg="white", font=("Arial", 14, "bold"), relief="groove", padx=10, pady=10
-        ).grid(row=0, column=1, pady=10)
+            frame_botoes, text="Praticar com Exercícios", 
+            # Chama a nova função, passando a chave do tópico atual
+            command=lambda: self.exercicios_callback(self.nome_topico_chave),
+            bg="#2ECC71", fg="white", font=("Arial", 14, "bold"), relief="groove", padx=15, pady=10
+        ).pack(side="left", padx=20)
+        
+        tk.Button(
+            frame_botoes, text="Voltar ao Menu", command=self.voltar_callback,
+            bg="#3498DB", fg="white", font=("Arial", 14, "bold"), relief="groove", padx=15, pady=10
+        ).pack(side="left", padx=20)
 
     def renderizar_conteudo(self, master_frame, teoria):
-        # Esta função desenha o conteúdo dentro da área de rolagem
+        # (Esta função permanece a mesma, sem alterações)
+        master_frame.columnconfigure(0, weight=1)
         for item in teoria:
             tipo = item.get("tipo", "")
-            
             if tipo in ["paragrafo", "subtitulo", "codigo"]:
                 conteudo = item.get("conteudo", "")
+                widget_args = {"master": master_frame, "text": conteudo, "wraplength": 800, "justify": "center", "bg": "#2C3E50", "fg": "white"}
                 if tipo == "paragrafo":
-                    tk.Label(master_frame, text=conteudo, font=self.FONTE_PARAGRAFO, wraplength=800, 
-                              justify="left", bg="#274C5C", fg="white").pack(pady=5, padx=10, anchor="w")
+                    tk.Label(**widget_args, font=self.FONTE_PARAGRAFO).pack(pady=10)
                 elif tipo == "subtitulo":
-                    tk.Label(master_frame, text=conteudo, font=self.FONTE_SUBTITULO,
-                              bg="#274C5C", fg="white").pack(pady=(15, 5), padx=10, anchor="w")
+                    subtitulo_args = widget_args.copy()
+                    subtitulo_args["fg"] = "#1ABC9C"
+                    tk.Label(**subtitulo_args, font=self.FONTE_SUBTITULO).pack(pady=(20, 10))
                 elif tipo == "codigo":
-                    tk.Label(master_frame, text=conteudo, font=self.FONTE_CODIGO, justify="left",
-                              bg="#34495E", fg="#ECF0F1", relief="sunken", bd=2).pack(pady=10, padx=20, anchor="w")
-            
+                    codigo_args = widget_args.copy()
+                    codigo_args["bg"] = "#34495E"
+                    codigo_args["fg"] = "#ECF0F1"
+                    tk.Label(**codigo_args, font=self.FONTE_CODIGO, relief="sunken", bd=2, padx=10, pady=10).pack(pady=15)
             elif tipo in ["lista_ordenada", "lista_nao_ordenada"]:
                 itens_da_lista = item.get("itens", [])
                 for i, texto_item in enumerate(itens_da_lista):
                     prefixo = f"{i+1}. " if tipo == "lista_ordenada" else "• "
-                    tk.Label(master_frame, text=prefixo + texto_item, font=self.FONTE_PARAGRAFO, 
-                              wraplength=780, justify="left", bg="#274C5C", fg="white"
-                              ).pack(pady=2, padx=25, anchor="w")
+                    tk.Label(master_frame, text=prefixo + texto_item, font=self.FONTE_PARAGRAFO, wraplength=780, justify="left", bg="#2C3E50", fg="white").pack(pady=3, anchor="w", padx=30)

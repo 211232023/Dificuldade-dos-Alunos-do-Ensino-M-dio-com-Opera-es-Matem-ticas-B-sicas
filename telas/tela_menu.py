@@ -1,8 +1,6 @@
 # telas/tela_menu.py
 
 import tkinter as tk
-# --- CORREÇÃO AQUI ---
-# Adicionamos o 'D' que faltava em CONTEUDO_EDUCACIONAL
 from conteudo.dados import CONTEUDO_EDUCACIONAL
 
 class TelaMenu(tk.Frame):
@@ -11,23 +9,28 @@ class TelaMenu(tk.Frame):
         
         self.controller = controller
 
-        # Criamos um frame principal que se expandirá para centralizar seus filhos
         main_frame = tk.Frame(self, bg="#274C5C")
         main_frame.pack(expand=True)
 
         # Boas-vindas com fonte maior
         tk.Label(
             main_frame, text="👋 Bem-vindo ao EducaMath!",
-            font=("Arial", 32, "bold"), # Fonte aumentada
+            font=("Arial", 36, "bold"),
             fg="white", bg="#274C5C"
-        ).pack(pady=30)
+        ).pack(pady=(30, 10))
 
-        # Estilo dos botões com fontes e padding maiores
+        # --- MUDANÇA SUTIL: Adicionando um subtítulo/instrução ---
+        tk.Label(
+            main_frame, text="Selecione um tópico abaixo para começar a aprender.",
+            font=("Arial", 16),
+            fg="#BDC3C7", bg="#274C5C" # Cor cinza claro
+        ).pack(pady=(0, 30))
+
         estilo_btn = {
             "width": 20, "bg": "#1ABC9C", "fg": "white",
             "activebackground": "#118F76", "activeforeground": "white",
-            "relief": "groove", "bd": 3, "font": ("Arial", 16, "bold"), # Fonte aumentada
-            "padx": 10, "pady": 10 # Padding aumentado
+            "relief": "groove", "bd": 3, "font": ("Arial", 16, "bold"),
+            "padx": 10, "pady": 10
         }
 
         frame_botoes = tk.Frame(main_frame, bg="#274C5C")
@@ -50,13 +53,12 @@ class TelaMenu(tk.Frame):
             
             tk.Button(
                 frame_botoes, text=texto, command=comando, **estilo_btn
-            ).grid(row=linha, column=coluna, padx=15, pady=15) # Espaçamento aumentado
+            ).grid(row=linha, column=coluna, padx=15, pady=15)
 
-        # Botão de saída
         tk.Button(
             main_frame, text="Sair do EducaMath",
             command=self.quit,
-            bg="#E74C3C", fg="white", # Cor um pouco mais suave
-            font=("Arial", 14, "bold"), # Fonte ajustada
+            bg="#E74C3C", fg="white",
+            font=("Arial", 14, "bold"),
             width=25, relief="ridge"
         ).pack(pady=40)

@@ -1,27 +1,22 @@
-# main.py
-
 import tkinter as tk
 import sys
 import os
 
-# Adiciona o diretório raiz do projeto ao caminho do Python.
 diretorio_atual = os.path.dirname(os.path.abspath(__file__))
 sys.path.append(diretorio_atual)
 
 from telas.tela_menu import TelaMenu
 from telas.tela_topico import TelaTopico
+from telas.tela_exercicios import TelaExercicios 
+from conteudo.dados import CONTEUDO_EDUCACIONAL 
 
 class App(tk.Tk):
     def __init__(self):
         super().__init__()
         self.title("EducaMath")
-        
-        # --- MUDANÇA 1: Iniciar em tela cheia ---
         self.attributes('-fullscreen', True)
-        # --- MUDANÇA 2: Permitir sair da tela cheia com a tecla 'Esc' ---
         self.bind('<Escape>', lambda e: self.attributes('-fullscreen', False))
 
-        # O container principal agora ocupa toda a janela
         self.container = tk.Frame(self)
         self.container.pack(fill="both", expand=True)
 
@@ -41,7 +36,21 @@ class App(tk.Tk):
         
         self.frame_atual = TelaTopico(master=self.container, 
                                       nome_topico_chave=nome_topico_chave, 
-                                      voltar_callback=self.mostrar_tela_menu)
+                                      voltar_callback=self.mostrar_tela_menu,
+                                      # Passa a nova função de controle
+                                      exercicios_callback=self.mostrar_tela_exercicios)
+        self.frame_atual.pack(fill="both", expand=True)
+
+    def mostrar_tela_exercicios(self, nome_topico_chave):
+        if self.frame_atual:
+            self.frame_atual.destroy()
+        
+        exercicios = CONTEUDO_EDUCACIONAL[nome_topico_chave]["exercicios"]
+        
+        self.frame_atual = TelaExercicios(master=self.container, 
+                                          exercicios=exercicios, 
+                                          # O botão de voltar na tela de exercícios te leva para a tela do tópico
+                                          voltar_callback=lambda: self.mostrar_tela_topico(nome_topico_chave))
         self.frame_atual.pack(fill="both", expand=True)
 
 if __name__ == "__main__":

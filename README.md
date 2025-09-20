@@ -1,0 +1,1 @@
+# Dificuldade-dos-Alunos-do-Ensino-M-dio-com-Opera-es-Matem-ticas-B-sicas

@@ -13,15 +13,19 @@ CONTEUDO_EDUCACIONAL = {
             {
                 "tipo": "lista_ordenada",
                 "itens": [
-                    "**Organize os números:** Para somar números com mais de um dígito, organize-os em colunas, alinhando as casas decimais (ou as unidades, de trás para frente).",
-                    "**Comece pela direita:** Sempre inicie a soma pela coluna da direita (a das unidades) e vá movendo para a esquerda.",
-                    "**Realize a soma e a 'subida':** Some os números de cada coluna. Se a soma for igual ou maior que 10, você deixa o algarismo das unidades e 'sobe' o algarismo das dezenas para a próxima coluna.",
-                    "**Soma com 'subida':** Exemplo: Para somar 25 + 18:"
+                    "**Organize os números:** Coloque um número abaixo do outro, alinhando-os pela direita (as unidades, as dezenas, as centenas, etc.). Se houver casas decimais, alinhe as vírgulas.",
+                    "**Comece pela direita:** Inicie a soma sempre pela coluna da direita, que é a das unidades.",
+                    "**Realize a soma':** Some os algarismos de cada coluna, de baixo para cima.",
+                    "**'Suba' a dezena:** Se a soma de uma coluna for 10 ou mais, você escreve apenas o último algarismo da soma (o das unidades) e 'sobe' o algarismo das dezenas para a próxima coluna, somando-o junto com os outros números dela. Repita esse processo até a última coluna.",
                 ]
             },
             {
+                "tipo": "paragrafo",
+                "conteudo": "Exemplo: Para somar 123 + 45:"
+            },
+            {
                 "tipo": "codigo",
-                "conteudo": "  25\n+ 18\n-----\n  43"
+                "conteudo": " 123\n+ 45\n-----\n 168"
             },
             {
                 "tipo": "paragrafo",

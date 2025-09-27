@@ -13,19 +13,18 @@ CONTEUDO_EDUCACIONAL = {
             {
                 "tipo": "lista_ordenada",
                 "itens": [
-                    "**Organize os números:** Coloque um número abaixo do outro, alinhando-os pela direita (as unidades, as dezenas, as centenas, etc.). Se houver casas decimais, alinhe as vírgulas.",
-                    "**Comece pela direita:** Inicie a soma sempre pela coluna da direita, que é a das unidades.",
-                    "**Realize a soma':** Some os algarismos de cada coluna, de baixo para cima.",
-                    "**'Suba' a dezena:** Se a soma de uma coluna for 10 ou mais, você escreve apenas o último algarismo da soma (o das unidades) e 'sobe' o algarismo das dezenas para a próxima coluna, somando-o junto com os outros números dela. Repita esse processo até a última coluna.",
+                    "**Organize os números:** Para somar números com mais de um dígito, organize-os em colunas, alinhando as casas decimais (ou as unidades, de trás para frente).",
+                    "**Comece pela direita:** Sempre inicie a soma pela coluna da direita (a das unidades) e vá movendo para a esquerda.",
+                    "**Realize a soma e a 'subida':** Some os números de cada coluna. Se a soma for igual ou maior que 10, você deixa o algarismo das unidades e 'sobe' o algarismo das dezenas para a próxima coluna.",
                 ]
             },
             {
                 "tipo": "paragrafo",
-                "conteudo": "Exemplo: Para somar 123 + 45:"
+                "conteudo": "Exemplo: para somar 25 + 18"
             },
             {
                 "tipo": "codigo",
-                "conteudo": " 123\n+ 45\n-----\n 168"
+                "conteudo": "  25  (5 + 8 = 13, 3 fica na coluna das unidades e 1 vai pra casa das dezenas)\n+ 18  (2 + 1 + 1 = 4)\n-----\n  43"
             },
             {
                 "tipo": "paragrafo",
@@ -62,12 +61,16 @@ CONTEUDO_EDUCACIONAL = {
                     "**Organize os números:** Assim como na adição, alinhe os números em colunas, com o maior valor (o **minuendo**) em cima e o menor (o **subtraendo**) embaixo.",
                     "**Comece pela direita:** Inicie a subtração pela coluna das unidades (da direita) e avance para a esquerda.",
                     "**Realize a subtração:** Subtraia o número de baixo do número de cima em cada coluna.",
-                    "**Subtração com 'empréstimo' (quando o de cima é menor):** Exemplo: Para subtrair 62 - 35:"
+                    "**Subtração com 'empréstimo' (quando o de cima é menor): Subtraia 1 do minuendo à esquerda para adicioná-lo ao minuendo que está sendo calculado.**"
                 ]
             },
             {
+                "tipo": "paragrafo",
+                "conteudo": "Exemplo: para subtrair 62 - 35"
+            },
+            {
                 "tipo": "codigo",
-                "conteudo": "  62\n- 35\n-----\n  27"
+                "conteudo": "  62  /  (2 - 5 resulta em negativo, mas com o 'empréstimo' fazemos 12 - 5 = 7)\n- 35  /  (6 - 3 passou por uma redução no valor de cima, virando 5 - 3 = 2)\n-----\n  27"
             },
             {
                 "tipo": "paragrafo",
@@ -92,11 +95,7 @@ CONTEUDO_EDUCACIONAL = {
         "teoria": [
             {
                 "tipo": "paragrafo",
-                "conteudo": "A multiplicação é uma operação matemática que representa uma **soma repetida**. Em vez de somar o mesmo número várias vezes, você usa a multiplicação para chegar ao resultado de forma mais rápida. O sinal usado para a multiplicação é o 'x' ou, mais frequentemente, o ponto '•'."
-            },
-            {
-                "tipo": "paragrafo",
-                "conteudo": "Os números que você está multiplicando são chamados de **fatores**, e o resultado é o **produto**."
+                "conteudo": "A multiplicação é uma operação matemática que representa uma **soma repetida**. Em vez de somar o mesmo número várias vezes, você usa a multiplicação para chegar ao resultado de forma mais rápida. O sinal usado para a multiplicação é o '×' ou, mais frequentemente, o ponto '•'.\nOs números que você está multiplicando são chamados de **fatores**, e o resultado é o **produto**."
             },
             {
                 "tipo": "subtitulo",
@@ -106,9 +105,17 @@ CONTEUDO_EDUCACIONAL = {
                 "tipo": "lista_ordenada",
                 "itens": [
                     "**Organize os números:** Alinhe os números em colunas. Se você está multiplicando por um número de apenas um dígito, o processo é mais direto.",
-                    "**Multiplique por cada dígito:** Comece multiplicando o número de baixo (4) por cada dígito do número de cima, da direita para a esquerda.",
-                    "**Realize a multiplicação e a 'subida':** Multiplique as unidades: 4 x 3 = 12. Escreva o 2 e 'suba' o 1 para a coluna das dezenas. Multiplique as dezenas: 4 x 2 = 8. Agora, some o 1 que você 'subiu': 8 + 1 = 9. Escreva o 9. O resultado é 92."
+                    "**Multiplique por cada dígito:** Comece multiplicando o número de baixo por cada dígito do número de cima, da direita para a esquerda.",
+                    "**Realize a multiplicação e a 'subida':** Caso o produto de uma coluna seja 10 ou mais, escreva o algarismo das unidades e 'suba' o algarismo das dezenas para a próxima coluna."
                 ]
+            },
+            {
+                "tipo": "paragrafo",
+                "conteudo": "Exemplo: Para multiplicar 34 × 2:"
+            },
+            {
+                "tipo": "codigo",
+                "conteudo": "  34  (4 × 2 = 4 + 4 = 8)\n×  2  (3 × 2 = 3 + 3 = 6\n-----\n  68"
             },
             {
                 "tipo": "subtitulo",
@@ -117,14 +124,14 @@ CONTEUDO_EDUCACIONAL = {
             {
                 "tipo": "lista_ordenada",
                 "itens": [
-                    "**Multiplique pelo primeiro dígito de baixo:** Primeiro, multiplique 34 por 2. O resultado é 68.",
+                    "**Multiplique pelo primeiro dígito de baixo:** usaremos 24 × 12 como exemplo\nPrimeiro, multiplique 34 por 2. O resultado é 68.",
                     "**Multiplique pelo segundo dígito de baixo:** Multiplique 34 por 1, mas como o 1 representa 10, adicione um zero (0) na coluna das unidades para alinhar corretamente. O resultado é 340.",
                     "**Adicione os resultados parciais:** Some os dois resultados que você encontrou: 68 e 340. O resultado final é 408."
                 ]
             },
             {
                 "tipo": "codigo",
-                "conteudo": "  34\nx 12\n-----\n  68  (34 x 2)\n+340  (34 x 10)\n-----\n 408"
+                "conteudo": "  34  (2 × 4 = 8 e 2 × 3 = 6, resultado 68)\nx 12  (1 × 4 = 4 e 1 × 3 = 3, resultado 34, que, adicionado o 0, vira 340)\n-----\n  68  (34 × 2)\n+340  (34 × 10)\n-----\n 408"
             },
             {
                 "tipo": "paragrafo",
@@ -132,16 +139,16 @@ CONTEUDO_EDUCACIONAL = {
             }
         ],
         "exercicios": [
-            {"pergunta": "Quanto é 6 x 7?", "resposta": "42"},
-            {"pergunta": "Quanto é 15 x 3?", "resposta": "45"},
-            {"pergunta": "Quanto é 9 x 8?", "resposta": "72"},
-            {"pergunta": "Quanto é 12 x 4?", "resposta": "48"},
-            {"pergunta": "Quanto é 11 x 11?", "resposta": "121"},
-            {"pergunta": "Quanto é 14 x 5?", "resposta": "70"},
-            {"pergunta": "Quanto é 20 x 6?", "resposta": "120"},
-            {"pergunta": "Quanto é 7 x 9?", "resposta": "63"},
-            {"pergunta": "Quanto é 13 x 7?", "resposta": "91"},
-            {"pergunta": "Quanto é 8 x 12?", "resposta": "96"}
+            {"pergunta": "Quanto é 6 × 7?", "resposta": "42"},
+            {"pergunta": "Quanto é 15 × 3?", "resposta": "45"},
+            {"pergunta": "Quanto é 9 × 8?", "resposta": "72"},
+            {"pergunta": "Quanto é 12 × 4?", "resposta": "48"},
+            {"pergunta": "Quanto é 11 × 11?", "resposta": "121"},
+            {"pergunta": "Quanto é 14 × 5?", "resposta": "70"},
+            {"pergunta": "Quanto é 20 × 6?", "resposta": "120"},
+            {"pergunta": "Quanto é 7 × 9?", "resposta": "63"},
+            {"pergunta": "Quanto é 13 × 7?", "resposta": "91"},
+            {"pergunta": "Quanto é 8 × 12?", "resposta": "96"}
         ]
     },
     "Divisao": {
@@ -149,7 +156,7 @@ CONTEUDO_EDUCACIONAL = {
         "teoria": [
             {
                 "tipo": "paragrafo",
-                "conteudo": "A divisão é a operação matemática que representa a ideia de **repartir** uma quantidade em partes iguais. Ela é a operação inversa da multiplicação. O símbolo usado pode ser o sinal de divisão (÷) ou dois pontos (:). O número que está sendo dividido é o **dividendo**, o número pelo qual você divide é o **divisor**, o resultado é o **quociente**, e o que sobra é o **resto**."
+                "conteudo": "A divisão é a operação matemática que representa a ideia de **repartir** uma quantidade em partes iguais. Ela é a operação inversa da multiplicação. O símbolo usado pode ser o sinal de divisão (÷) ou dois pontos (:).\nO número que está sendo dividido é o **dividendo**, o número pelo qual você divide é o **divisor**, o resultado é o **quociente**, e o que sobra é o **resto**."
             },
             {
                 "tipo": "subtitulo",
@@ -164,18 +171,24 @@ CONTEUDO_EDUCACIONAL = {
                 ]
             },
             {
+                "tipo": "paragrafo",
+                "conteudo": "Exemplo: Para dividir 48 ÷ 4:"
+            },
+            {
                 "tipo": "codigo",
-                "conteudo": "  48 | 4\n- 4  ---\n  08  12\n- 8\n----\n  0"
+                "conteudo": "  48        | 4\n- 4 (4 × 1)  ---\n ---          12\n  08\n-  8(4 × 2)\n ---\n   0"
             },
             {
                 "tipo": "subtitulo",
-                "conteudo": "Divisão com resto:"
+                "conteudo": "Divisão com 'empréstimo' e resto:"
             },
             {
-                "tipo": "lista_ordenada",
-                "itens": [
-                    "**Exemplo:** Para dividir 97 ÷ 4. O resultado é 24, e o resto é 1."
-                ]
+                "tipo": "paragrafo",
+                "conteudo": "**Exemplo:** Ao dividir 97 ÷ 4, o resultado é 24, e o resto é 1. Se você quiser continuar a conta para obter um resultado decimal, você adiciona uma vírgula no quociente e um zero no resto, repetindo o processo."
+            },
+            {
+                "tipo": "codigo",
+                "conteudo": "  97        | 4\n- 8 (4 × 2)  ---\n ---          24\n  17\n- 16(4 × 4)\n ---\n   1"
             },
             {
                 "tipo": "paragrafo",
@@ -200,11 +213,8 @@ CONTEUDO_EDUCACIONAL = {
         "teoria": [
             {
                 "tipo": "paragrafo",
-                "conteudo": "A potenciação é a operação matemática que representa uma **multiplicação de fatores iguais**. Em vez de escrever 2×2×2×2, usamos a potenciação para simplificar a notação."
-            },
-            {
-                "tipo": "paragrafo",
-                "conteudo": "Ela é composta por três elementos: **Base** (o número que se repete), **Expoente** (o número de vezes que a base se repete) e **Potência** (o resultado)."
+                "conteudo": "A potenciação é a operação matemática que representa uma **multiplicação de fatores iguais**. Em vez de escrever 2×2×2×2, usamos a potenciação para simplificar a notação.\nEla é composta por três elementos: **Base** (o número que se repete), **Expoente** (o número de vezes que a base se repete) e **Potência** (o resultado).\n"
+                r"A forma geral é: aⁿ, onde 'a' é a base e 'n' é o expoente."
             },
             {
                 "tipo": "subtitulo",
@@ -214,7 +224,7 @@ CONTEUDO_EDUCACIONAL = {
                 "tipo": "lista_ordenada",
                 "itens": [
                     "**Entenda o expoente:** O expoente não é para multiplicar, mas sim para indicar quantas vezes a base é multiplicada por ela mesma.",
-                    r"**Realize a multiplicação:** Exemplo: $5^3$ significa $5 \times 5 \times 5 = 125$."
+                    r"**Realize a multiplicação:** por exemplo, $5^3$ significa $5 \times 5 \times 5 = 125$."
                 ]
             },
             {
@@ -224,9 +234,9 @@ CONTEUDO_EDUCACIONAL = {
             {
                 "tipo": "lista_nao_ordenada",
                 "itens": [
-                    r"**Expoente 1:** $7^1 = 7$.",
-                    r"**Expoente 0:** $10^0 = 1$.",
-                    r"**Base 10:** $10^4 = 10.000$.",
+                    r"**Expoente 1:** Qualquer número elevado a 1 é igual a ele mesmo (ex: $7^1 = 7$).",
+                    r"**Expoente 0:** Qualquer número (exceto o zero) elevado a 0 é igual a 1 (ex: $10^0 = 1$).",
+                    r"**Base 10:** Quando a base é 10, o resultado é o número 1 seguido de tantos zeros quanto o valor do expoente (ex: $10^4 = 10.000$).",
                     r"**Números negativos:** A base negativa com expoente par resulta em número positivo (ex: $(-2)^4 = 16$), e com expoente ímpar, em negativo (ex: $(-2)^3 = -8$)."
                 ]
             },
@@ -236,16 +246,16 @@ CONTEUDO_EDUCACIONAL = {
             }
         ],
         "exercicios": [
-            {"pergunta": "Quanto é 3^3?", "resposta": "27"},
-            {"pergunta": "Quanto é 2^5?", "resposta": "32"},
-            {"pergunta": "Quanto é 5^4?", "resposta": "625"},
-            {"pergunta": "Quanto é 10^2?", "resposta": "100"},
-            {"pergunta": "Quanto é 4^3?", "resposta": "64"},
-            {"pergunta": "Quanto é 6^2?", "resposta": "36"},
-            {"pergunta": "Quanto é 7^3?", "resposta": "343"},
-            {"pergunta": "Quanto é 8^2?", "resposta": "64"},
-            {"pergunta": "Quanto é 9^3?", "resposta": "729"},
-            {"pergunta": "Quanto é 2^10?", "resposta": "1024"}
+            {"pergunta": "Quanto é 3³?", "resposta": "27"},
+            {"pergunta": "Quanto é 2⁵?", "resposta": "32"},
+            {"pergunta": "Quanto é 5⁴?", "resposta": "625"},
+            {"pergunta": "Quanto é 10²?", "resposta": "100"},
+            {"pergunta": "Quanto é 4³?", "resposta": "64"},
+            {"pergunta": "Quanto é 6²?", "resposta": "36"},
+            {"pergunta": "Quanto é 7³?", "resposta": "343"},
+            {"pergunta": "Quanto é 8²?", "resposta": "64"},
+            {"pergunta": "Quanto é 9³?", "resposta": "729"},
+            {"pergunta": "Quanto é 2¹⁰?", "resposta": "1024"}
         ]
     },
     "Radiciacao": {
@@ -253,11 +263,7 @@ CONTEUDO_EDUCACIONAL = {
         "teoria": [
             {
                 "tipo": "paragrafo",
-                "conteudo": "A radiciação é a operação matemática **inversa da potenciação**. Ela busca a **base** que, multiplicada por si mesma, resulta no número que está dentro da raiz."
-            },
-            {
-                "tipo": "paragrafo",
-                "conteudo": r"Ela é composta por **índice**, **radical** ($\sqrt{}$) e **radicando**."
+                "conteudo": "A radiciação é a operação matemática **inversa da potenciação**. Ela busca a **base** que, multiplicada por si mesma, resulta no número que está dentro da raiz.\nEla é composta por **índice**, **radical** (√) e **radicando**."
             },
             {
                 "tipo": "subtitulo",
@@ -267,8 +273,8 @@ CONTEUDO_EDUCACIONAL = {
                 "tipo": "lista_nao_ordenada",
                 "itens": [
                     "**Pense na potenciação:** A pergunta é 'Qual número, elevado ao índice, resulta no radicando?'",
-                    r"**Exemplo:** $\sqrt{25}$. O índice é 2. A resposta é 5, pois $5^2 = 25$.",
-                    r"**Exemplo:** $\sqrt[3]{8}$. O índice é 3. A resposta é 2, pois $2^3 = 8$."
+                    r"**Exemplo:** √25. O índice é 2. A resposta é 5, pois $5^2 = 25$.",
+                    r"**Exemplo:** ∛8. O índice é 3. A resposta é 2, pois $2^3 = 8$."
                 ]
             },
             {
@@ -279,7 +285,8 @@ CONTEUDO_EDUCACIONAL = {
                 "tipo": "lista_nao_ordenada",
                 "itens": [
                     "**Raiz de números negativos:** Em geral, não existe raiz quadrada de números negativos no conjunto dos números reais.",
-                    r"**Simplificação de radicais:** Você pode fatorar o radicando para simplificar a raiz. Exemplo: $\sqrt{12}$ é $2\sqrt{3}$."
+                    "**Simplificação de radicais:** Você pode fatorar o radicando para simplificar a raiz.",
+                    r"**Exemplo:** ao fatorar √12, obtemos √2 × 2 × 3 = √$2^2$ + 3.""\nO expoente 2 pode 'cortar' com o índice 2 e o 2 sai pra fora\nO resultado é 2√3."
                 ]
             },
             {
@@ -305,11 +312,7 @@ CONTEUDO_EDUCACIONAL = {
         "teoria": [
             {
                 "tipo": "paragrafo",
-                "conteudo": "A logaritmação é a operação **inversa da potenciação** que busca o **expoente**. A pergunta que ela responde é: 'Qual expoente devo usar na base para obter este resultado?'"
-            },
-            {
-                "tipo": "paragrafo",
-                "conteudo": "Ela é composta por **base**, **logaritmando** e **logaritmo** (o resultado)."
+                "conteudo": "A logaritmação é a operação **inversa da potenciação** que busca o **expoente**. A pergunta que ela responde é: 'Qual expoente devo usar na base para obter este resultado?\nEla é composta por **base** (número que é elevado ao expoente, na parte de baixo do log), **logaritmando**(O resultado da potenciação, ao lado do log) e **logaritmo** (o resultado).\nA forma geral é log₁b = x, onde '1' é a base, 'b' é o logaritmando' e 'x' é o logaritmo sendo lido como 'o logaritmo de b na base 1 é igual a x'."
             },
             {
                 "tipo": "subtitulo",
@@ -319,7 +322,7 @@ CONTEUDO_EDUCACIONAL = {
                 "tipo": "lista_nao_ordenada",
                 "itens": [
                     "**Transforme em potenciação:** Use a 'regra da voltinha': a base eleva o resultado do log para dar o logaritmando.",
-                    r"**Exemplo:** $\log_2 8 = x$. Isso se traduz para a equação $2^x = 8$. A resposta é 3."
+                    "**Exemplo:** log₂8 = n. Isso se traduz para a equação 2ⁿ = 8. A resposta é 3."
                 ]
             },
             {
@@ -329,8 +332,8 @@ CONTEUDO_EDUCACIONAL = {
             {
                 "tipo": "lista_nao_ordenada",
                 "itens": [
-                    r"**Logaritmo da base:** $\log_5 5 = 1$.",
-                    r"**Logaritmo de 1:** $\log_{10} 1 = 0$.",
+                    "**Logaritmo da base:** Se o logaritmando for igual à base, o resultado é 1 (ex: log₅5 = 1).",
+                    "**Logaritmo de 1:**  logaritmo de 1 em qualquer base (positiva e diferente de 1) é 0 (ex: log₉1 = 0.",
                     "**Logaritmo de 0 e negativos:** Não é definido no conjunto dos números reais."
                 ]
             },
@@ -340,16 +343,16 @@ CONTEUDO_EDUCACIONAL = {
             }
         ],
         "exercicios": [
-            {"pergunta": "Quanto é log_2 8?", "resposta": "3"},
-            {"pergunta": "Quanto é log_10 100?", "resposta": "2"},
-            {"pergunta": "Quanto é log_3 27?", "resposta": "3"},
-            {"pergunta": "Quanto é log_5 25?", "resposta": "2"},
-            {"pergunta": "Quanto é log_4 16?", "resposta": "2"},
-            {"pergunta": "Quanto é log_2 32?", "resposta": "5"},
-            {"pergunta": "Quanto é log_10 1000?", "resposta": "3"},
-            {"pergunta": "Quanto é log_6 36?", "resposta": "2"},
-            {"pergunta": "Quanto é log_7 49?", "resposta": "2"},
-            {"pergunta": "Quanto é log_8 64?", "resposta": "2"}
+            {"pergunta": "Quanto é log₂8?", "resposta": "3"},
+            {"pergunta": "Quanto é log₁₀100?", "resposta": "2"},
+            {"pergunta": "Quanto é log₃27?", "resposta": "3"},
+            {"pergunta": "Quanto é log₅625?", "resposta": "4"},
+            {"pergunta": "Quanto é log₄256?", "resposta": "4"},
+            {"pergunta": "Quanto é log₂32?", "resposta": "5"},
+            {"pergunta": "Quanto é log₁₀1000?", "resposta": "3"},
+            {"pergunta": "Quanto é log₆36?", "resposta": "2"},
+            {"pergunta": "Quanto é log₇7?", "resposta": "1"},
+            {"pergunta": "Quanto é log₈64?", "resposta": "2"}
         ]
     }
 }

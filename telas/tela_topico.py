@@ -1,45 +1,9 @@
 # telas/tela_topico.py
 
 import tkinter as tk
-from tkinter import font as tkFont
 from conteudo.dados import CONTEUDO_EDUCACIONAL
-
-# --- Paleta de Cores e Fontes ---
-CORES = {
-    "background": "#2c3e50",
-    "background_secundario": "#34495e",
-    "texto_primario": "#ecf0f1",
-    "texto_titulo": "#ffffff",
-    "acento_primario": "#3498db",
-    "acento_secundario": "#9b59b6",
-    "sucesso": "#2ecc71",
-    "sucesso_hover": "#27ae60",
-    "codigo_background": "#283747",
-    "borda": "#4a637d"
-}
-
-FONTES = {
-    "titulo": ("Arial", 40, "bold"),
-    "subtitulo": ("Arial", 24, "bold"),
-    "paragrafo": ("Arial", 18),
-    "paragrafo_bold": ("Arial", 18, "bold"),
-    "codigo": ("Courier", 16)
-}
-
-# --- Widget Customizado para Botões com Hover ---
-class HoverButton(tk.Button):
-    def __init__(self, master, hover_color, **kw):
-        super().__init__(master=master, **kw)
-        self.default_bg = self["background"]
-        self.hover_color = hover_color
-        self.bind("<Enter>", self.on_enter)
-        self.bind("<Leave>", self.on_leave)
-
-    def on_enter(self, e):
-        self['background'] = self.hover_color
-
-    def on_leave(self, e):
-        self['background'] = self.default_bg
+from estilos import CORES, FONTES # Importação centralizada
+from telas.tela_menu import HoverButton # Reutilizando o HoverButton do menu
 
 class TelaTopico(tk.Frame):
     def __init__(self, master, nome_topico_chave, voltar_callback, exercicios_callback):
@@ -53,9 +17,8 @@ class TelaTopico(tk.Frame):
         self.grid_rowconfigure(1, weight=1)
         self.grid_columnconfigure(0, weight=1)
 
-        tk.Label(self, text=info["titulo"], font=FONTES["titulo"], bg=CORES["background"], fg=CORES["texto_titulo"]).grid(row=0, column=0, pady=(40, 25))
+        tk.Label(self, text=info["titulo"], font=FONTES["subtitulo"], bg=CORES["background"], fg=CORES["texto_titulo"]).grid(row=0, column=0, pady=(40, 25))
 
-        # Frame para a área de texto com borda
         text_frame = tk.Frame(self, bg=CORES["background_secundario"], bd=2, relief="flat", highlightbackground=CORES["borda"], highlightthickness=1)
         text_frame.grid(row=1, column=0, sticky="nsew", padx=100, pady=10)
         text_frame.grid_rowconfigure(0, weight=1)
@@ -92,10 +55,14 @@ class TelaTopico(tk.Frame):
 
         HoverButton(frame_botoes, text="Praticar com Exercícios", 
                     command=lambda: self.exercicios_callback(self.nome_topico_chave),
-                    bg=CORES["sucesso"], hover_color=CORES["sucesso_hover"], **estilo_btn).pack(side="left", padx=20)
+                    bg=CORES["sucesso"], 
+                    hover_color=CORES["sucesso_hover"], 
+                    click_color=CORES["sucesso_hover"], **estilo_btn).pack(side="left", padx=20)
         
         HoverButton(frame_botoes, text="Voltar ao Menu", command=self.voltar_callback,
-                    bg=CORES["acento_primario"], hover_color="#2980b9", **estilo_btn).pack(side="left", padx=20)
+                    bg=CORES["acento_primario"], 
+                    hover_color=CORES["botao_hover"],
+                    click_color=CORES["botao_click"], **estilo_btn).pack(side="left", padx=20)
 
     def traduzir_simbolos(self, texto):
         substituicoes = {'$': '', '\\times': '×', '^2': '²', '^3': '³', '^4': '⁴', '^1': '¹', '^0': '⁰', '{': '', '}': ''}
@@ -116,7 +83,7 @@ class TelaTopico(tk.Frame):
             tipo = item.get("tipo", "")
             
             if tipo == "paragrafo":
-                self.formatar_e_inserir_texto(item.get("conteudo", ""), tags=["center"]) # <<-- CORREÇÃO AQUI
+                self.formatar_e_inserir_texto(item.get("conteudo", ""), tags=["center"])
                 self.text_area.insert("end", "\n\n")
 
             elif tipo == "subtitulo":
@@ -136,6 +103,6 @@ class TelaTopico(tk.Frame):
                 for i, texto_item in enumerate(itens):
                     prefixo = f"  {i+1}. " if tipo == "lista_ordenada" else "  • "
                     self.text_area.insert("end", prefixo, ("left", "bold"))
-                    self.formatar_e_inserir_texto(texto_item, tags=["left"]) # <<-- CORREÇÃO AQUI
+                    self.formatar_e_inserir_texto(texto_item, tags=["left"])
                     self.text_area.insert("end", "\n")
                 self.text_area.insert("end", "\n")

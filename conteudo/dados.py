@@ -1,3 +1,5 @@
+# conteudo/dados.py
+
 CONTEUDO_EDUCACIONAL = {
     "Adicao": {
         "titulo": "Adição (Soma)",
@@ -237,7 +239,7 @@ CONTEUDO_EDUCACIONAL = {
                     r"**Expoente 1:** Qualquer número elevado a 1 é igual a ele mesmo (ex: $7^1 = 7$).",
                     r"**Expoente 0:** Qualquer número (exceto o zero) elevado a 0 é igual a 1 (ex: $10^0 = 1$).",
                     r"**Base 10:** Quando a base é 10, o resultado é o número 1 seguido de tantos zeros quanto o valor do expoente (ex: $10^4 = 10.000$).",
-                    r"**Números negativos:** A base negativa com expoente par resulta em número positivo (ex: $(-2)^4 = 16$), e com expoente ímpar, em negativo (ex: $(-2)^3 = -8$)."
+                    r"**Números negativos:** A base negativa com expoente par resulta em n_mero positivo (ex: $(-2)^4 = 16$), e com expoente _mpar, em negativo (ex: $(-2)^3 = -8$)."
                 ]
             },
             {
@@ -333,7 +335,7 @@ CONTEUDO_EDUCACIONAL = {
                 "tipo": "lista_nao_ordenada",
                 "itens": [
                     "**Logaritmo da base:** Se o logaritmando for igual à base, o resultado é 1 (ex: log₅5 = 1).",
-                    "**Logaritmo de 1:**  logaritmo de 1 em qualquer base (positiva e diferente de 1) é 0 (ex: log₉1 = 0.",
+                    "**Logaritmo de 1:** logaritmo de 1 em qualquer base (positiva e diferente de 1) é 0 (ex: log₉1 = 0.",
                     "**Logaritmo de 0 e negativos:** Não é definido no conjunto dos números reais."
                 ]
             },
@@ -353,6 +355,68 @@ CONTEUDO_EDUCACIONAL = {
             {"pergunta": "Quanto é log₆36?", "resposta": "2"},
             {"pergunta": "Quanto é log₇7?", "resposta": "1"},
             {"pergunta": "Quanto é log₈64?", "resposta": "2"}
+        ]
+    },
+    "Fracao": {
+        "titulo": "O que são Frações?",
+        "teoria": [
+            {
+                "tipo": "paragrafo",
+                "conteudo": "Uma fração representa uma **parte de um todo**. Imagine uma pizza dividida em 8 fatias iguais. Se você comer 1 fatia, você comeu 1/8 da pizza."
+            },
+            {
+                "tipo": "subtitulo",
+                "conteudo": "Componentes de uma Fração"
+            },
+            {
+                "tipo": "codigo",
+                "conteudo": "    1   -> Numerador (quantas partes você tem)\n   ---  -> Traço de fração\n    8   -> Denominador (em quantas partes o todo foi dividido)"
+            },
+            {
+                "tipo": "paragrafo",
+                "conteudo": "O **numerador** fica em cima e diz com quantas partes do todo estamos lidando. O **denominador** fica embaixo e diz em quantas partes iguais o todo foi dividido."
+            },
+            {
+                "tipo": "subtitulo",
+                "conteudo": "Tipos de Frações"
+            },
+            {
+                "tipo": "lista_nao_ordenada",
+                "itens": [
+                    "**Fração Própria:** O numerador é **menor** que o denominador (ex: 2/5). Representa uma quantidade menor que um inteiro.",
+                    "**Fração Imprópria:** O numerador é **maior** ou igual ao denominador (ex: 7/5). Representa uma quantidade igual ou maior que um inteiro.",
+                    "**Fração Aparente:** É um tipo de fração imprópria onde o numerador é um múltiplo do denominador (ex: 10/5). Ela 'aparenta' ser uma fração, mas na verdade representa um número inteiro (10 ÷ 5 = 2).",
+                    "**Número Misto:** A representação de uma fração imprópria como um número inteiro e uma fração própria juntos (ex: 1 2/5, que é o mesmo que 7/5)."
+                ]
+            },
+            {
+                "tipo": "subtitulo",
+                "conteudo": "Frações Equivalentes e Simplificação"
+            },
+            {
+                "tipo": "paragrafo",
+                "conteudo": "**Frações equivalentes** são frações que representam a mesma quantidade, mas são escritas com números diferentes. Por exemplo, 1/2 e 2/4 são equivalentes. Você pode encontrar uma fração equivalente multiplicando ou dividindo o numerador e o denominador pelo mesmo número."
+            },
+            {
+                "tipo": "paragrafo",
+                "conteudo": "**Simplificar uma fração** significa encontrar a fração equivalente mais simples possível (irredutível), dividindo o numerador e o denominador pelo maior divisor comum entre eles."
+            },
+            {
+                "tipo": "codigo",
+                "conteudo": "Exemplo de Simplificação:\nFração: 4/8\n\nDividindo ambos por 4:\n4 ÷ 4 = 1\n8 ÷ 4 = 2\n\nFração simplificada: 1/2"
+            }
+        ],
+        "exercicios": [
+            {"pergunta": "Na fração 3/7, qual número é o denominador?", "resposta": "7"},
+            {"pergunta": "Qual o nome do número que fica na parte de CIMA de uma fração?", "resposta": "numerador"},
+            {"pergunta": "Como se lê a fração 2/5?", "resposta": "dois quintos"},
+            {"pergunta": "A fração 5/9 é própria ou imprópria?", "resposta": "propria"},
+            {"pergunta": "A fração 10/3 é própria ou imprópria?", "resposta": "impropria"},
+            {"pergunta": "Qual fração é um exemplo de fração aparente? (ex: 6/3)", "resposta": "6/3"},
+            {"pergunta": "Qual é a forma simplificada da fração 5/10?", "resposta": "1/2"},
+            {"pergunta": "O número misto 1 1/3 é igual a qual fração imprópria?", "resposta": "4/3"},
+            {"pergunta": "A fração 9/9 representa qual número inteiro?", "resposta": "1"},
+            {"pergunta": "Qual o denominador na fração 12/15?", "resposta": "15"}
         ]
     }
 }

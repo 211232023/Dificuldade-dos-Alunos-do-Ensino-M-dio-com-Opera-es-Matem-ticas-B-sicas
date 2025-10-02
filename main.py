@@ -7,7 +7,8 @@ sys.path.append(diretorio_atual)
 
 from telas.tela_menu import TelaMenu
 from telas.tela_topico import TelaTopico
-from telas.tela_exercicios import TelaExercicios 
+from telas.tela_exercicios import TelaExercicios
+from telas.tela_feedback import TelaFeedback # Importa a tela de feedback
 from conteudo.dados import CONTEUDO_EDUCACIONAL 
 
 class App(tk.Tk):
@@ -37,9 +38,10 @@ class App(tk.Tk):
         self.frame_atual = TelaTopico(master=self.container, 
                                       nome_topico_chave=nome_topico_chave, 
                                       voltar_callback=self.mostrar_tela_menu,
-                                      # Passa a nova função de controle
                                       exercicios_callback=self.mostrar_tela_exercicios)
         self.frame_atual.pack(fill="both", expand=True)
+
+    # main.py
 
     def mostrar_tela_exercicios(self, nome_topico_chave):
         if self.frame_atual:
@@ -47,11 +49,34 @@ class App(tk.Tk):
         
         exercicios = CONTEUDO_EDUCACIONAL[nome_topico_chave]["exercicios"]
         
-        self.frame_atual = TelaExercicios(master=self.container, 
-                                          exercicios=exercicios, 
-                                          # O botão de voltar na tela de exercícios te leva para a tela do tópico
-                                          voltar_callback=lambda: self.mostrar_tela_topico(nome_topico_chave))
+        # *** A CORREÇÃO ESTÁ AQUI ***
+        # Criamos uma função lambda que captura o nome_topico_chave
+        # e o passa para a função de feedback junto com os outros argumentos.
+        def feedback_handler(acertos, total):
+            self.mostrar_tela_feedback(nome_topico_chave, acertos, total)
+
+        self.frame_atual = TelaExercicios(
+            master=self.container, 
+            exercicios=exercicios, 
+            voltar_callback=lambda: self.mostrar_tela_topico(nome_topico_chave),
+            feedback_callback=feedback_handler
+        )
         self.frame_atual.pack(fill="both", expand=True)
+        
+    # *** FUNÇÃO QUE ESTAVA FALTANDO NO SEU ARQUIVO ***
+    def mostrar_tela_feedback(self, nome_topico_chave, acertos, total_perguntas):
+        if self.frame_atual:
+            self.frame_atual.destroy()
+            
+        self.frame_atual = TelaFeedback(
+            master=self.container,
+            acertos=acertos,
+            total_perguntas=total_perguntas,
+            # A tela de feedback precisa saber como voltar para o tópico
+            voltar_callback=lambda: self.mostrar_tela_topico(nome_topico_chave)
+        )
+        self.frame_atual.pack(fill="both", expand=True)
+
 
 if __name__ == "__main__":
     app = App()

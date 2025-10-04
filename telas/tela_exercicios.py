@@ -17,7 +17,6 @@ class TelaExercicios(tk.Frame):
         self.pergunta_atual_index = 0
         self.acertos = 0
 
-        # Frame principal para o conteúdo da pergunta
         frame_conteudo = tk.Frame(self, bg=CORES["background"])
         frame_conteudo.pack(expand=True)
 
@@ -42,7 +41,6 @@ class TelaExercicios(tk.Frame):
         self.botao_principal.pack(pady=30)
         self.label_feedback.pack(pady=20)
 
-        # Frame inferior para o botão de voltar
         frame_voltar = tk.Frame(self, bg=CORES["background"])
         frame_voltar.pack(fill="x", side="bottom", pady=20)
         
@@ -53,17 +51,14 @@ class TelaExercicios(tk.Frame):
         self.mostrar_proxima_pergunta()
 
     def mostrar_proxima_pergunta(self):
-        # Reativa os widgets e limpa os campos
         self.entry_resposta.config(state="normal")
         self.entry_resposta.delete(0, 'end')
         self.label_feedback.config(text="")
-        
-        # Atualiza o conteúdo da pergunta
+
         self.label_contador.config(text=f"Pergunta {self.pergunta_atual_index + 1} de {self.total_perguntas}")
         pergunta_info = self.exercicios[self.pergunta_atual_index]
         self.label_pergunta.config(text=pergunta_info["pergunta"])
-        
-        # Configura o botão principal para a ação de verificar
+
         self.botao_principal.config(text="Verificar Resposta", command=self.verificar_resposta)
         self.entry_resposta.focus()
 
@@ -86,9 +81,7 @@ class TelaExercicios(tk.Frame):
         self.pergunta_atual_index += 1
         
         if self.pergunta_atual_index == self.total_perguntas:
-            # *** A CORREÇÃO ESTÁ AQUI ***
-            # Agora a chamada passa apenas os dois argumentos que a tela de exercícios conhece.
-            # O `nome_topico_chave` é gerenciado pelo handler que criamos no main.py.
+
             self.botao_principal.config(text="Finalizar Exercícios", command=lambda: self.feedback_callback(self.acertos, self.total_perguntas))
         else:
             self.botao_principal.config(text="Próxima Pergunta ➔", command=self.mostrar_proxima_pergunta)

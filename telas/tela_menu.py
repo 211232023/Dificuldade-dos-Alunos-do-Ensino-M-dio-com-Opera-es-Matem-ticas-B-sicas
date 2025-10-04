@@ -1,10 +1,7 @@
-# telas/tela_menu.py
-
 import tkinter as tk
 from conteudo.dados import CONTEUDO_EDUCACIONAL
-from estilos import CORES, FONTES # Importação centralizada
+from estilos import CORES, FONTES 
 
-# --- Widget Customizado para Botões com Hover e Clique ---
 class HoverButton(tk.Button):
     def __init__(self, master, hover_color, click_color, **kw):
         super().__init__(master=master, **kw)
@@ -27,7 +24,6 @@ class HoverButton(tk.Button):
         self['background'] = self.click_color
 
     def on_release(self, e):
-        # Ao soltar o clique, volta para a cor de hover se o mouse estiver sobre o botão
         if self.winfo_containing(e.x_root, e.y_root) == self:
             self['background'] = self.hover_color
         else:
@@ -42,7 +38,6 @@ class TelaMenu(tk.Frame):
         main_frame = tk.Frame(self, bg=CORES["background"])
         main_frame.pack(expand=True, padx=60, pady=40)
 
-        # Título com ícone
         tk.Label(
             main_frame, text="📚 EducaMath",
             font=FONTES["titulo"],
@@ -72,7 +67,7 @@ class TelaMenu(tk.Frame):
             "Adicao": "Soma", "Subtracao": "Subtração",
             "Multiplicacao": "Multiplicação", "Divisao": "Divisão",
             "Potenciacao": "Potências", "Radiciacao": "Raízes",
-            "Logaritmicao": "Logaritmos", "Fracao": "Frações" # <-- BOTÃO ADICIONADO AQUI
+            "Logaritmicao": "Logaritmos", "Fracao": "Frações" 
         }
         
         botoes_info = list(nomes_botoes.items())

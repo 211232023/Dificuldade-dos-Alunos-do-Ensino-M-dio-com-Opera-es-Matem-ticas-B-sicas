@@ -1,5 +1,3 @@
-# telas/tela_feedback.py
-
 import tkinter as tk
 from estilos import CORES, FONTES
 from telas.tela_menu import HoverButton
@@ -25,7 +23,6 @@ class TelaFeedback(tk.Frame):
             fg=CORES["texto_titulo"]
         ).pack(pady=(0, 40))
 
-        # Usando um frame para organizar os resultados
         frame_stats = tk.Frame(frame_central, bg=CORES["background_secundario"], padx=40, pady=30)
         frame_stats.pack(pady=20)
 

@@ -1,9 +1,7 @@
-# telas/tela_topico.py
-
 import tkinter as tk
 from conteudo.dados import CONTEUDO_EDUCACIONAL
-from estilos import CORES, FONTES # Importação centralizada
-from telas.tela_menu import HoverButton # Reutilizando o HoverButton do menu
+from estilos import CORES, FONTES 
+from telas.tela_menu import HoverButton 
 
 class TelaTopico(tk.Frame):
     def __init__(self, master, nome_topico_chave, voltar_callback, exercicios_callback):

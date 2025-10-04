@@ -1,5 +1,3 @@
-# conteudo/dados.py
-
 CONTEUDO_EDUCACIONAL = {
     "Adicao": {
         "titulo": "Adição (Soma)",
